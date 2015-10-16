@@ -18,6 +18,9 @@ ESTRUC_ *subtract (lval, rval)
     btoi(lval);                             /* convert pending booleans */
     btoi(rval);
 
+    if ((lval->type & e_list) && (rval->type & e_str))
+      rval = lcast(rval);                   /* implicit cast string to list */
+
     if (conflict(lval, rval, op_sub))       /* test type conflict */
         return(lval);
 
