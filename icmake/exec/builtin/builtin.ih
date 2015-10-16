@@ -66,6 +66,7 @@ void fun_c_path(void);
 void fun_fields(void);
 void fun_fgets(void);
 void fun_fprintf(void);
+void fun_ffprintf(FILE * f,size_t start);
 void fun_g_base(void);
 void fun_getch(void);
 void fun_getpid (void);
