@@ -14,6 +14,9 @@ ESTRUC_ *addition (ESTRUC_ *lval, ESTRUC_ *rval)
     btoi(lval);                             /* convert pending booleans */
     btoi(rval);
 
+    if ((lval->type & e_list) && (rval->type & e_str))
+    	rval = lcast(rval);
+
     if (conflict(lval, rval, op_add))       /* test type conflict */
         return(lval);
 
