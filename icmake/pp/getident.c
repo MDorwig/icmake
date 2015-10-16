@@ -30,8 +30,13 @@ void getident(STRING_ *str)
 
     skipblanks();
     str->len = 0;
-    while ((ch = nextchar()) == '_' || isalpha(ch))
+    ch = nextchar();
+    if (isalpha(ch) || ch == '_') {
+    	do {
         string_append(str, ch);
+    		ch = nextchar();
+    	} while (isalnum(ch) || ch == '_');
+    }
     pushback(ch);
     string_append(str, 0);
 }
