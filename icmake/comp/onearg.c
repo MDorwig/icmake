@@ -61,3 +61,14 @@ ESTRUC_ *onearg(type, arg)
 
     return (arg);
 }
+
+ESTRUC_ * listcount(ESTRUC_* arg)
+{
+  int ok = test_type(arg, e_list);
+  etoc(arg);                               /* arg to stack */
+  if (strcmp(lexstring,"count") != 0)
+      semantic("%s undefined", lexstring);
+  if (ok)
+    callrss(arg, f_sizeoflist);
+  return arg;
+}
