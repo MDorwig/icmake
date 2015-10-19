@@ -105,7 +105,8 @@ char
     *source_name,
     *lexstring,                          /* resizing STRING buffer */
     *stringbuf,                          /* final STRING */
-    type_conflict[] = "conflicting operand types for %s";
+    type_conflict[] = "conflicting operand types for %s",
+	  unknown_attr[]  = "unknown attribute %s";
 
 E_TYPE_
     vartype;

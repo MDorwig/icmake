@@ -46,3 +46,31 @@ ESTRUC_ *indexOp(ESTRUC_ *larg, ESTRUC_ *rarg)
     }
     return (rarg);
 }
+
+ESTRUC_ * attribute(ESTRUC_ * arg)
+{
+	etoc(arg);
+	if (test_type(arg,e_list))
+	{
+		if (strcmp(lexstring,"length") == 0)
+		{
+			callrss(arg,f_sizeoflist);
+		}
+		else
+		{
+			semantic(unknown_attr,lexstring);
+		}
+	}
+	else if (test_type(arg,e_str))
+	{
+		if (strcmp(lexstring,"length") == 0)
+		{
+			callrss(arg,f_strlen);
+		}
+		else
+		{
+			semantic(unknown_attr,lexstring);
+		}
+	}
+	return arg ;
+}

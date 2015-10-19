@@ -1,2 +1,2 @@
 ../parser.c : ../parser
-	bison $< -o $@
+	bison -r state $< -o $@
