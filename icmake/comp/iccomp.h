@@ -312,6 +312,8 @@ ESTRUC_ *not_boolean (ESTRUC_ *);          /* ! code */
 ESTRUC_ *nullframe(ESTRUC_ *e);              /* discard(e) + *e = stackfr(0) */
 ESTRUC_ *old (ESTRUC_ *, ESTRUC_ *);       /* older code */
 ESTRUC_ *onearg (E_TYPE_, ESTRUC_ *);      /* fun(x)  code */
+ESTRUC_ *listcount(ESTRUC_ *lst);
+
 ESTRUC_ *optint_special (E_TYPE_,           /* fun([int,] ...) */
                       ESTRUC_ *, ESTRUC_ *);
 ESTRUC_ *optint_string (E_TYPE_,        /* chdir(), system() */
@@ -379,4 +381,3 @@ void    patchup_false (ESTRUC_ *, int);/* batchpatch truelist */
 void    pop_dead(void);                 /* restore dead-level */
 void    push_dead(void);                /* new dead-level */
 void    semantic (char *, ...);         /* give semantic error */
-

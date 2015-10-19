@@ -585,6 +585,11 @@ func_or_var:
         function
         closepar
     |
+    	IDENTIFIER { $1=*fetchvar() } '.' IDENTIFIER 
+    	{
+    		$$ = *listcount(&$1);
+    	}
+    |
         IDENTIFIER
         {
             $$ = *fetchvar();
