@@ -206,6 +206,7 @@ extern char
     *lexstring,
     *stringbuf,
     type_conflict[],
+    unknown_attr[],
     version[];
 
 extern E_TYPE_
@@ -298,6 +299,7 @@ ESTRUC_ *if_stmnt (ESTRUC_ *, ESTRUC_ *,    /* if code */
 ESTRUC_ *incdec (PREPOST_, OPCODE_,         /* E.g., c++ */
                                ESTRUC_ *);
 ESTRUC_ *indexOp  (ESTRUC_ *, ESTRUC_ *);     /*  [] operator */
+ESTRUC_ *attribute(ESTRUC_ *);                /*  . operator */
 ESTRUC_ *insertarg (ESTRUC_ *, ESTRUC_ *);/* arg1, before arg2, ... */
 ESTRUC_ *lcast (ESTRUC_ *);                /* cast to list */
 ESTRUC_ *makelist (ESTRUC_ *, E_TYPE_);         /* makelist() */
@@ -312,7 +314,6 @@ ESTRUC_ *not_boolean (ESTRUC_ *);          /* ! code */
 ESTRUC_ *nullframe(ESTRUC_ *e);              /* discard(e) + *e = stackfr(0) */
 ESTRUC_ *old (ESTRUC_ *, ESTRUC_ *);       /* older code */
 ESTRUC_ *onearg (E_TYPE_, ESTRUC_ *);      /* fun(x)  code */
-ESTRUC_ *listcount(ESTRUC_ *lst);
 
 ESTRUC_ *optint_special (E_TYPE_,           /* fun([int,] ...) */
                       ESTRUC_ *, ESTRUC_ *);
