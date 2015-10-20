@@ -7,16 +7,8 @@
 
 void fun_trimright()
 {
-    char *cp = xstrdup(stringStr(top()));
-    char * end = cp + strlen(cp);
-    while(--end >= cp)
-    {
-      if (!isspace(*end))
-      {
-        *++end=0;
-        break ;
-      }
-    }
-    reg = *stringConstructor_cP(cp);
-    free(cp);
+    char *cp = stringStr(top());
+    int len = strlen(cp);
+    while(--len >= 0 && isspace(cp[len]));
+    reg = *stringConstructor_cPn(cp,len+1);
 }

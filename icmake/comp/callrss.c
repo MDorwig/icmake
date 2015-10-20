@@ -68,8 +68,9 @@ void callrss(ESTRUC_ *e, FUNNR_ funnr, ...)
 
         case f_trimleft:
         case f_trimright:
+        case f_trim:
           type = e_str | e_reg;
-        break ;
+        break;
                                             /* 2 args, returning list */
         case f_stat:
         case f_fgets:                       /* list fgets(string, int) */
@@ -86,6 +87,11 @@ void callrss(ESTRUC_ *e, FUNNR_ funnr, ...)
             args = va_arg(marker, size_t);
         break;
 
+        case f_strformat:
+          args = va_arg(marker, size_t);
+          type = e_str | e_reg;
+        break;
+        
         default:
         /*
             default is entered in the switch to prevent a long compiler 
@@ -104,7 +110,7 @@ void callrss(ESTRUC_ *e, FUNNR_ funnr, ...)
             case f_sizeoflist:
             case f_strlen:
         */
-    break;
+        break;
     }
     if (args)
         gencode (e, op_asp, args);          /* add stack pointer */
