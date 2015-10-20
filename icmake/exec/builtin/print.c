@@ -65,7 +65,7 @@ void fun_ffprintf (FILE * out,size_t start)
             }
             else
             {
-              fprintf(out,"(null)",(unsigned)i);
+              fputs("(null)",out);
             }
           }
           else if (*fmt == '%')
