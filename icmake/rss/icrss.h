@@ -267,6 +267,7 @@ typedef enum                                /* names of rss-functions */
     f_str_el,
     f_strlwr,                               /* only used by the compiler */
     f_strupr,                               /* only used by the compiler */
+    f_strformat,
     f_system,
 
                       /* reserved rss function opcodes for subreleases */
@@ -275,6 +276,9 @@ typedef enum                                /* names of rss-functions */
     f_getpid,                               /* used by several programs  */
 
     f_substr,
+    f_trim,
+    f_trimleft,
+    f_trimright,
     f_getenv,
 
     f_backtick,                             /* 4 left until f_hlt */

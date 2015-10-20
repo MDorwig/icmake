@@ -54,8 +54,12 @@
         STRLWR
         STRUPR
         STRFIND
+        STRFORMAT
         SUBSTR
         SYSTEM
+        TRIM
+        TRIMLEFT
+        TRIMRIGHT
         VOID
         WHILE
 
@@ -96,6 +100,8 @@
 %right '!' INC DEC '~'
 
 %left '['
+
+%left '.'
 
 %expect 1
 
@@ -237,6 +243,13 @@ expression:
         {
             $$ = *indexOp(&$1, &$3);
         }
+    |
+    		expression
+    		'.'
+    		IDENTIFIER
+    		{
+    			$$ = *attribute(&$1);
+    		}
     |
         expression
         MUL_IS
@@ -655,6 +668,13 @@ function:
             $$ = *exec_fprintf($1.type, &$3);
         }
     |
+        STRFORMAT
+        openpar
+        args                                /* first may be anything */
+        {
+            $$ = *specials(f_strformat, &$3);
+        }
+    |
         funname
         openpar
         opt_arglist
@@ -914,6 +934,12 @@ one_arg_funs:
         STRUPR
     |
         STRLWR
+    |
+    	TRIM
+    |
+    	TRIMLEFT
+    |
+    	TRIMRIGHT
     ;
 
 openpar:    {parse_error = err_openpar_expected; }      '(' ;

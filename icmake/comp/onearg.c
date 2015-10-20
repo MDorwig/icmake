@@ -50,6 +50,9 @@ ESTRUC_ *onearg(type, arg)
             case f_strlen:
             case f_strlwr:
             case f_strupr:
+        		case f_trim:
+        		case f_trimright:
+        		case f_trimleft:
         */
             ok = test_type(arg, e_str);
     }
@@ -60,4 +63,15 @@ ESTRUC_ *onearg(type, arg)
         semantic(type_conflict, funstring[type]);
 
     return (arg);
+}
+
+ESTRUC_ * listcount(ESTRUC_* arg)
+{
+  int ok = test_type(arg, e_list);
+  etoc(arg);                               /* arg to stack */
+  if (strcmp(lexstring,"count") != 0)
+      semantic("%s undefined", lexstring);
+  if (ok)
+    callrss(arg, f_sizeoflist);
+  return arg;
 }

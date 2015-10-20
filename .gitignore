@@ -1,2 +1,8 @@
 
 # /debian/
+.settings/
+tmp/
+.project/
+.cproject/
+*.pim
+*.bim

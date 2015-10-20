@@ -1,24 +1,21 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+/* A Bison parser, made by GNU Bison 2.7.  */
 
-/* Skeleton interface for Bison's Yacc-like parsers in C
-
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-   Free Software Foundation, Inc.
-
-   This program is free software; you can redistribute it and/or modify
+/* Bison interface for Yacc-like parsers in C
+   
+      Copyright (C) 1984, 1989-1990, 2000-2012 Free Software Foundation, Inc.
+   
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
-
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+   
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
    GNU General Public License for more details.
-
+   
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -29,9 +26,19 @@
    special exception, which will cause the skeleton and the resulting
    Bison output files to be licensed under the GNU General Public
    License without this special exception.
-
+   
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
+
+#ifndef YY_YY_PARSER_H_INCLUDED
+# define YY_YY_PARSER_H_INCLUDED
+/* Enabling traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
+#endif
+#if YYDEBUG
+extern int yydebug;
+#endif
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
@@ -84,116 +91,61 @@
      STRLWR = 300,
      STRUPR = 301,
      STRFIND = 302,
-     SUBSTR = 303,
-     SYSTEM = 304,
-     VOID = 305,
-     WHILE = 306,
-     PLUS_IS = 307,
-     MOD_IS = 308,
-     MUL_IS = 309,
-     MINUS_IS = 310,
-     DIV_IS = 311,
-     SHR_IS = 312,
-     SHL_IS = 313,
-     XOR_IS = 314,
-     OR_IS = 315,
-     AND_IS = 316,
-     OR = 317,
-     AND = 318,
-     NOT_EQUAL = 319,
-     EQUAL = 320,
-     YOUNGER = 321,
-     OLDER = 322,
-     GREATER_EQUAL = 323,
-     SMALLER_EQUAL = 324,
-     SHR = 325,
-     SHL = 326,
-     DEC = 327,
-     INC = 328
+     STRFORMAT = 303,
+     SUBSTR = 304,
+     SYSTEM = 305,
+     TRIM = 306,
+     TRIMLEFT = 307,
+     TRIMRIGHT = 308,
+     VOID = 309,
+     WHILE = 310,
+     PLUS_IS = 311,
+     MOD_IS = 312,
+     MUL_IS = 313,
+     MINUS_IS = 314,
+     DIV_IS = 315,
+     SHR_IS = 316,
+     SHL_IS = 317,
+     XOR_IS = 318,
+     OR_IS = 319,
+     AND_IS = 320,
+     OR = 321,
+     AND = 322,
+     NOT_EQUAL = 323,
+     EQUAL = 324,
+     YOUNGER = 325,
+     OLDER = 326,
+     GREATER_EQUAL = 327,
+     SMALLER_EQUAL = 328,
+     SHR = 329,
+     SHL = 330,
+     DEC = 331,
+     INC = 332
    };
 #endif
-/* Tokens.  */
-#define ARG_HEAD 258
-#define ARG_TAIL 259
-#define ASCII 260
-#define BREAK 261
-#define CHDIR 262
-#define CMD_HEAD 263
-#define CMD_TAIL 264
-#define C_BASE 265
-#define C_EXT 266
-#define C_PATH 267
-#define G_BASE 268
-#define G_EXT 269
-#define G_PATH 270
-#define ELEMENT 271
-#define ELSE 272
-#define EXEC 273
-#define EXECUTE 274
-#define EXISTS 275
-#define EXIT 276
-#define FGETS 277
-#define FIELDS 278
-#define FOR 279
-#define FPRINTF 280
-#define GETENV 281
-#define GETCH 282
-#define GETPID 283
-#define GETS 284
-#define IDENTIFIER 285
-#define IF 286
-#define INT 287
-#define LIST 288
-#define MAKELIST 289
-#define M_ECHO 290
-#define NUMBER 291
-#define PRINTF 292
-#define PUTENV 293
-#define RETURN 294
-#define SIZEOFLIST 295
-#define STAT 296
-#define STRING 297
-#define STRINGTYPE 298
-#define STRLEN 299
-#define STRLWR 300
-#define STRUPR 301
-#define STRFIND 302
-#define SUBSTR 303
-#define SYSTEM 304
-#define VOID 305
-#define WHILE 306
-#define PLUS_IS 307
-#define MOD_IS 308
-#define MUL_IS 309
-#define MINUS_IS 310
-#define DIV_IS 311
-#define SHR_IS 312
-#define SHL_IS 313
-#define XOR_IS 314
-#define OR_IS 315
-#define AND_IS 316
-#define OR 317
-#define AND 318
-#define NOT_EQUAL 319
-#define EQUAL 320
-#define YOUNGER 321
-#define OLDER 322
-#define GREATER_EQUAL 323
-#define SMALLER_EQUAL 324
-#define SHR 325
-#define SHL 326
-#define DEC 327
-#define INC 328
-
-
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef int YYSTYPE;
+# define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
-# define YYSTYPE_IS_TRIVIAL 1
 #endif
 
 extern YYSTYPE yylval;
 
+#ifdef YYPARSE_PARAM
+#if defined __STDC__ || defined __cplusplus
+int yyparse (void *YYPARSE_PARAM);
+#else
+int yyparse ();
+#endif
+#else /* ! YYPARSE_PARAM */
+#if defined __STDC__ || defined __cplusplus
+int yyparse (void);
+#else
+int yyparse ();
+#endif
+#endif /* ! YYPARSE_PARAM */
+
+#endif /* !YY_YY_PARSER_H_INCLUDED  */

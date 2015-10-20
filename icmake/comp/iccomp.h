@@ -149,8 +149,8 @@ extern FILE
 extern int
     initialization,                         /* for initialization expr. */
     yy_init,                                /* yylex() initializer: 1 to init. */
-    yyleng,                                 /* strlen(yytext) */
     yynerrs;                                /* number of parse errors so far */
+extern size_t yyleng;                       /* strlen(yytext) */
 
 extern int
     yylineno;                               /* yylex() line counter */
@@ -206,6 +206,7 @@ extern char
     *lexstring,
     *stringbuf,
     type_conflict[],
+    unknown_attr[],
     version[];
 
 extern E_TYPE_
@@ -298,6 +299,7 @@ ESTRUC_ *if_stmnt (ESTRUC_ *, ESTRUC_ *,    /* if code */
 ESTRUC_ *incdec (PREPOST_, OPCODE_,         /* E.g., c++ */
                                ESTRUC_ *);
 ESTRUC_ *indexOp  (ESTRUC_ *, ESTRUC_ *);     /*  [] operator */
+ESTRUC_ *attribute(ESTRUC_ *);                /*  . operator */
 ESTRUC_ *insertarg (ESTRUC_ *, ESTRUC_ *);/* arg1, before arg2, ... */
 ESTRUC_ *lcast (ESTRUC_ *);                /* cast to list */
 ESTRUC_ *makelist (ESTRUC_ *, E_TYPE_);         /* makelist() */
@@ -312,6 +314,7 @@ ESTRUC_ *not_boolean (ESTRUC_ *);          /* ! code */
 ESTRUC_ *nullframe(ESTRUC_ *e);              /* discard(e) + *e = stackfr(0) */
 ESTRUC_ *old (ESTRUC_ *, ESTRUC_ *);       /* older code */
 ESTRUC_ *onearg (E_TYPE_, ESTRUC_ *);      /* fun(x)  code */
+
 ESTRUC_ *optint_special (E_TYPE_,           /* fun([int,] ...) */
                       ESTRUC_ *, ESTRUC_ *);
 ESTRUC_ *optint_string (E_TYPE_,        /* chdir(), system() */
@@ -379,4 +382,3 @@ void    patchup_false (ESTRUC_ *, int);/* batchpatch truelist */
 void    pop_dead(void);                 /* restore dead-level */
 void    push_dead(void);                /* new dead-level */
 void    semantic (char *, ...);         /* give semantic error */
-
