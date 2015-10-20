@@ -86,7 +86,10 @@ void fun_strlen(void);
 void fun_strlwr(void);
 void fun_strupr(void);
 void fun_substr(void);
+void fun_trimleft(void);
+void fun_trimright(void);
 void fun_system(void);
 void fun_cmd_head(void);
 
 int termch(void);
+
