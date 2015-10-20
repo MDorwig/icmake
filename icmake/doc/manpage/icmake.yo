@@ -561,6 +561,13 @@ provided:
         tt(filename). Returns the number of printed arguments.
     )
 
+    itt(int fprintf(string filename, string format, ...))nl()
+        Appends all (comma separated) arguments to the file
+        tt(filename). Returns the number of printed arguments.nl()
+        if tt(format) contains placeholders %1 .. %n the output is formatted.nl()
+        see also tt(strformat)
+    
+
     Filename modifier:
     itemization(
     itt(string get_base(string file))nl()
@@ -671,6 +678,11 @@ provided:
     itt(int printf(...))nl()
         Shows all (comma separated) arguments to screen (i.e., the standard
         output stream). Returns the number of printed arguments.
+    itt(int printf(string format, ...))nl()
+        Shows all (comma separated) arguments to screen (i.e., the standard
+        output stream). Returns the number of printed arguments.nl()
+        if tt(format) contains placeholders %1 .. %n the output is formatted nl()
+        see also tt(strformat)
     )
 
     System interface:
@@ -715,6 +727,21 @@ provided:
         returns index in tt(haystack) where tt(needle) is found, or -1 if 
         tt(needle) is not contained in tt(haystack).nl()
         bf(This function was called strstr() in versions before 7.00).
+    itt(int strformat(string format,...))nl()
+    	returns a formatted string using placeholders %1 .. %2 to address arguments following format.nl()
+    	example:nl()
+    	verb(
+			void main()
+			{
+			  int i = 10;
+			  int j = 20;
+			  string s1;
+			  string s2;
+			  s1 = (string)i+" "+(string)j+" "+(string)i; // the old way
+			  s2 = strformat("%1 %2 %1",i,j); // the new way
+			  printf("s1=%1 s2=%2\n",s1,s2);
+			}
+		)
     itt(string strlwr(string s))nl()
         Returns a lower-case duplicate of tt(s).
     itt(list strtok(string str, string separators))nl()
@@ -729,6 +756,12 @@ provided:
         tt(count) characters. If tt(offset) exceeds (or equals) the string's
         size or if tt(count <= 0), then an empty string is returned. If
         tt(offset) is less than 0 then 0 is used.
+    itt(string trim(string s))nl()
+        Returns a string with leading and trailing whitespaces removed.
+    itt(string trimleft(string s))nl()
+        Returns a string with leading whitespaces removed.
+    itt(string trim(string s))nl()
+        Returns a string with trailing whitespaces removed.
     )
 
     System calls:
