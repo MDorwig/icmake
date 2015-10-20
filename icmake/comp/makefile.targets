@@ -1,2 +1,5 @@
 ../parser.c : ../parser
-	bison -r state $< -o $@
+	bison -r state -d $< -o $@
+	
+../lexer.c: ../lexer
+	flex -o $@ $<

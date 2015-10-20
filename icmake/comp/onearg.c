@@ -34,11 +34,6 @@ ESTRUC_ *onearg(type, arg)
             ok = test_type(arg, e_int);
         break;
 
-        case f_trimright:
-        case f_trimleft:
-          ok = test_type(arg,e_str);
-        break ;
-
         default:
         /*
             case f_backtick:
@@ -55,6 +50,9 @@ ESTRUC_ *onearg(type, arg)
             case f_strlen:
             case f_strlwr:
             case f_strupr:
+        		case f_trim:
+        		case f_trimright:
+        		case f_trimleft:
         */
             ok = test_type(arg, e_str);
     }

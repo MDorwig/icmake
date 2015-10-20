@@ -7,6 +7,8 @@ typedef VAR_    STRINGVAR_;
 
 STRINGVAR_  *stringConstructor(void);
 STRINGVAR_  *stringConstructor_cP(char const *str);
+STRINGVAR_  *stringConstructor_cPn(const char * str,int n);
+
 void        stringDestructor(STRINGVAR_ *var);
 STRINGVAR_  *stringCopyCons(STRINGVAR_ const *var);
 

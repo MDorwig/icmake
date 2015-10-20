@@ -44,6 +44,7 @@ char
         "string_element",
         "strlwr",
         "strupr",
+        "strformat",
         "system",
 
         "strlen",
@@ -51,6 +52,10 @@ char
         "getpid",
 
         "substr",
+        "trim",
+        "trimleft",
+        "trimright",
+
         "getenv",
         "backtick",
     };

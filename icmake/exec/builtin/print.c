@@ -89,19 +89,3 @@ void fun_ffprintf (FILE * out,size_t start)
       }
     }
 }
-/* original
-void fun_printf ()
-{
-    size_t i;
-    int newelement;
-    size_t nargs = intValue(top());
-
-    for (i = 1; i <= nargs; i += newelement)
-    {
-        char *string = getarg(i, &newelement);
-        printf("%s%s", string, 
-                       typeValue(top() - i) & e_list && *string ? " " : "");
-        free(string);
-    }
-}
-*/

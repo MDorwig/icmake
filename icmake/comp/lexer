@@ -65,10 +65,6 @@ ascii                   {                   /* ascii_int may become ascii_str */
 break                   {
                             return(BREAK);
                         }
-capture                 {
-							yylval.type = f_backtick;
-							return(CAPTURE);
-						}                        
 chdir                   {
                             yylval.type = f_chdir;
                             return(CHDIR);
@@ -227,6 +223,10 @@ strfind                 {
                             yylval.type = f_strfind;
                             return STRFIND;
                         }
+strformat               {
+                            yylval.type = f_strformat;
+                            return STRFORMAT;
+                        }
 substr                  {
                             yylval.type = f_substr;
                             return SUBSTR;
@@ -235,14 +235,18 @@ system                  {
                             yylval.type = f_system;
                             return(SYSTEM);
                         }
-trimleft       			{
-							yylval.type = f_trimleft;
-							return TRIMLEFT;
-						}
-trimright				{
-							yylval.type = f_trimright;
-							return TRIMRIGHT;
-						}						                        
+trim       			        {
+							              yylval.type = f_trim;
+							              return TRIMLEFT;
+						            }
+trimleft       			    {
+							              yylval.type = f_trimleft;
+							              return TRIMLEFT;
+						            }
+trimright				        {
+							              yylval.type = f_trimright;
+							              return TRIMRIGHT;
+						            }
 while                   {
                             return(WHILE);
                         }
