@@ -76,9 +76,7 @@ void fun_strformat(void)
 					}
 					else
 					{
-						char buf[16];
-						sprintf(buf,"%%%d",i);
-						append(&reg,buf);
+						append(&reg,"(null)");
 					}
 				}
 				else if (*fmt == '%')
