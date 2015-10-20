@@ -13,6 +13,7 @@
         ARG_TAIL
         ASCII
         BREAK
+        CAPTURE
         CHDIR
         CMD_HEAD
         CMD_TAIL
@@ -56,6 +57,8 @@
         STRFIND
         SUBSTR
         SYSTEM
+        TRIMLEFT
+        TRIMRIGHT
         VOID
         WHILE
 
@@ -529,6 +532,12 @@ expression:
         {
             $$ = *onearg(f_backtick, &$2);
         }
+        
+     | 	
+     	CAPTURE '(' expression ')'
+     	{
+     		$$ = *onearg(f_backtick, &$3);	
+     	}
     ;
 
 expr_code:
@@ -585,7 +594,7 @@ func_or_var:
         function
         closepar
     |
-    	IDENTIFIER { $1=*fetchvar() } '.' IDENTIFIER 
+    	IDENTIFIER { $1=*fetchvar(); } '.' IDENTIFIER 
     	{
     		$$ = *listcount(&$1);
     	}
@@ -919,6 +928,10 @@ one_arg_funs:
         STRUPR
     |
         STRLWR
+    |
+    	TRIMLEFT
+    |
+    	TRIMRIGHT
     ;
 
 openpar:    {parse_error = err_openpar_expected; }      '(' ;
