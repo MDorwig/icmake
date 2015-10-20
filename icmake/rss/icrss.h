@@ -275,6 +275,8 @@ typedef enum                                /* names of rss-functions */
     f_getpid,                               /* used by several programs  */
 
     f_substr,
+    f_trimleft,
+    f_trimright,
     f_getenv,
 
     f_backtick,                             /* 4 left until f_hlt */

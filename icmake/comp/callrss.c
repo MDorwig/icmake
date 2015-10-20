@@ -66,6 +66,10 @@ void callrss(ESTRUC_ *e, FUNNR_ funnr, ...)
             type = e_str | e_reg;           /* returning string */
         break;
 
+        case f_trimleft:
+        case f_trimright:
+          type = e_str | e_reg;
+        break ;
                                             /* 2 args, returning list */
         case f_stat:
         case f_fgets:                       /* list fgets(string, int) */

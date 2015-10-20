@@ -56,6 +56,8 @@
         STRFIND
         SUBSTR
         SYSTEM
+        TRIMLEFT
+        TRIMRIGHT
         VOID
         WHILE
 
@@ -923,6 +925,10 @@ one_arg_funs:
         STRUPR
     |
         STRLWR
+    |
+    	TRIMLEFT
+    |
+    	TRIMRIGHT
     ;
 
 openpar:    {parse_error = err_openpar_expected; }      '(' ;

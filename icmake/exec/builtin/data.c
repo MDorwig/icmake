@@ -55,6 +55,8 @@ void (*builtinfun[])(void) =
          fun_getpid,
     
          fun_substr,
+         fun_trimleft,
+         fun_trimright,
          fun_getenv,
          fun_backtick,
          fun_empty,
