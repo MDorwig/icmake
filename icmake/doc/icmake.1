@@ -745,10 +745,6 @@ Output interface:
 .br 
 Appends all (comma separated) arguments to the file
 \fIfilename\fP\&. Returns the number of printed arguments\&.
-.br
-if the second parameter contains placeholders like %1 .. %n output is formatted using the placehoders\&.
-.br
-for example fprintf(filename,"i=%1 j=%2\\n",i,j); writes a line "i=5 j=8" into filename when i=5 and j=8\&.
 
 .PP 
 Filename modifier:
@@ -897,21 +893,7 @@ Output interface:
 \fIint printf(\&.\&.\&.)\fP
 .br 
 Shows all (comma separated) arguments to screen (i\&.e\&., the standard
-output stream)\&. 
-.br
-Returns the number of printed arguments\&.
-.br
-if the second parameter contains placeholders like %1 .. %n output is formatted using the placehoders\&.
-.br
-for example:
-.br
-.nf
-   int i = 5 ;
-   int j = 8 ;
-   printf("i=%1 j=%2\\n",i,j); 
-   
-   writes i=5 j=8 to stdout\&.
-.fi
+output stream)\&. Returns the number of printed arguments\&.
 
 .PP 
 System interface:
@@ -927,7 +909,6 @@ List information:
 \fIint sizeof(list l)\fP
 .br 
 Returns the number of elements in \fIlist\fP
-Alternative syntax is l.length\fP
 
 .PP 
 System information:
@@ -967,16 +948,6 @@ returns index in \fIhaystack\fP where \fIneedle\fP is found, or \-1 if
 \fIneedle\fP is not contained in \fIhaystack\fP\&.
 .br 
 \fBThis function was called strstr() in versions before 7\&.00\fP\&.
-.br
-.IP o 
-\fIstring strformat(string formatstring,...)\fP
-.br
-returns a formatted string using placehoders in the formatstring\&.
-.br
-placeholders are %1 ... %n where n adresses the n'th argument following formatstring\&.
-.br
-strformat("%1 %2 %1","2","3") results in the string "2 3 2"
-
 .IP o 
 \fIstring strlwr(string s)\fP
 .br 
@@ -999,22 +970,6 @@ Returns a substring of \fItext\fP, starting at \fIoffset\fP, consisting of
 \fIcount\fP characters\&. If \fIoffset\fP exceeds (or equals) the string\(cq\&s
 size or if \fIcount <= 0\fP, then an empty string is returned\&. If
 \fIoffset\fP is less than 0 then 0 is used\&.
-.IP o 
-\fIstring trim(string text)\fP
-.br 
-Returns a string with leading and trailing whitespaces removed\&.
-.br
-whitespaces are all chars defined by the \fIisspace()\fP function\&.
-
-.IP o 
-\fIstring trimleft(string text)\fP
-.br 
-Returns a string with leading whitespaces removed\&.
-
-.IP o 
-\fIstring trimright(string text)\fP
-.br 
-Returns a string with trailing whitespaces removed\&.
 
 .PP 
 System calls:
