@@ -3,22 +3,8 @@
  *
  *  Created on: 20.10.2015
  *      Author: dorwig
- */
-/*
-\funcref{fun\_print}{void fun\_print ()}
-    {}
-    {}
-    {print(), xrealloc()}
-    {fun\_exec()}
-    {funprint.c}
-    {
-
-        This function prints the arguments to a {\em printf()} statement,
-        pushed onto the stack previously. The number of arguments to printf is
-        the last pushed value.
-
-    }
-
+ *      
+ * Function {\em fun\_strformat()} returns a formatted string using "%n" placeholders  found in the first arg
 */
 
 #include "builtin.ih"

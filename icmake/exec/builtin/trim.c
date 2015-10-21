@@ -1,6 +1,5 @@
 /*
         Function {\em fun\_trim()} returns its argument with leading and trailing whitespaces removed
-    }
 */
 
 #include "builtin.ih"
