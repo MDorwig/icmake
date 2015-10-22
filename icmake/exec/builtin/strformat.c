@@ -29,8 +29,9 @@ static void appendn(STRINGVAR_ * res,const char * s,size_t n)
 static void addarg(STRINGVAR_ * res,size_t i,int * newelement)
 {
   char * string = getarg(i,newelement);
+	int len = strlen(string); 
   append(res,string);
-  if (typeValue(top() - i) & e_list && *string && *newelement == 0)
+  if ((typeValue(top() - i) & e_list) && string[len-1] != '\n' && *newelement == 0)
     append(res," ");
   free(string);
 }
