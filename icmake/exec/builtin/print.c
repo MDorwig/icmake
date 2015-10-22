@@ -19,10 +19,12 @@
 
 static void printarg(FILE * out,size_t i,int * newelement)
 {
+	int len ;
   char * string = getarg(i,newelement);
-  fputs(string,out);
-  if (typeValue(top() - i) & e_list && *string && *newelement == 0)
-    putc(' ',out);
+  len = strlen(string);
+  fwrite(string,1,len,out);
+  if ((typeValue(top() - i) & e_list) && string[len-1] != '\n' && *newelement == 0)
+  	fputc(' ',out);
   free(string);
 }
 
@@ -83,6 +85,8 @@ void fun_ffprintf (FILE * out,size_t start)
     }
     else
     {
+    	fputs(fmt,out);
+    	start += newelement;
       for (i = start; i <= nargs; i += newelement)
       {
           printarg(out,i,&newelement);
