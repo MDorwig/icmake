@@ -18,5 +18,8 @@
 
 void fun_echo()
 {
+    int oe ;
+    oe = echo ;
     echo = intValue(top());
+    reg = *intConstructor_i(oe);
 }
