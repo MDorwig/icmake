@@ -41,11 +41,15 @@ void fun_ffprintf (FILE * out,size_t start)
 
     size_t nargs = intValue(top());
     char * fmt = getarg(start,&newelement);
-    char * cp = strchr(fmt,'%');
-    if (cp != NULL)
+    char * cp = NULL;
+    if (nargs > 1)
     {
-      cprintf = isdigit(cp[1]);
-    }
+    	cp = strchr(fmt,'%');
+    	if (cp != NULL)
+    	{
+    		cprintf = isdigit(cp[1]);
+    	}
+		}
     if (cprintf)
     {
       char * last = fmt;
