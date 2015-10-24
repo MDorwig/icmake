@@ -5,23 +5,25 @@ int _spawnlp (int mode, const char *prog, const char *av0, ...)
     va_list
         marker;
     register char
-    *nextarg;
+      *nextarg;
     char
-        buf [_MAX_PATH * 4];
-
-    strcpy (buf, prog);
+      *buf;
+    int
+      res ;
+    buf = xstrdup(prog);
 
     va_start (marker, av0);
     nextarg = va_arg (marker, char*);
 
     while (nextarg)
     {
-        strcat (buf, " ");
-        strcat (buf, nextarg);
+        buf = xstrcat (buf, " ");
+        buf = xstrcat (buf, nextarg);
         nextarg = va_arg (marker, char*);
     }
-
-    return (system (buf));
+    res = system (buf);
+    free(buf);
+    return (res);
 }
 
 #ifdef DEBUG

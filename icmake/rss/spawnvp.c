@@ -6,20 +6,23 @@
 
 int _spawnvp (int mode, const char *prog, const char **av)
 {
-    char
-        buf [_MAX_PATH * 4];
+    char 
+      *buf ;
+    int
+      res;
 
-    strcpy (buf, prog);
+    buf = xstrdup(prog);
     av++;
 
     while (*av)
     {
-        strcat (buf, " ");
-        strcat (buf, *av);
+        buf = xstrcat (buf, " ");
+        buf = xstrcat (buf, *av);
         av++;
     }
-
-    return (system (buf));
+    res = system (buf);
+    free(buf);
+    return (res);
 }
 
 #ifdef DEBUG
