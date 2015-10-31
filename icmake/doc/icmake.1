@@ -1,4 +1,4 @@
-.TH "icmake" "1" "1992\-2015" "icmake\&.7\&.23\&.02\&.tar\&.gz" "A program maintenance utility"
+.TH "icmake" "1" "1992\-2015" "icmake\&.7\&.23\&.01\-MD\&.tar\&.gz" "A program maintenance utility"
 
 .PP 
 .SH "NAME"
@@ -747,6 +747,16 @@ Appends all (comma separated) arguments to the file
 \fIfilename\fP\&. Returns the number of printed arguments\&.
 
 .PP 
+.IP o 
+\fIint fprintf(string filename, string format, \&.\&.\&.)\fP
+.br 
+Appends all (comma separated) arguments to the file
+\fIfilename\fP\&. Returns the number of printed arguments\&.
+.br 
+if \fIformat\fP contains placeholders %1 \&.\&. %n the output is formatted\&.
+.br 
+see also \fIstrformat\fP
+.PP 
 Filename modifier:
 .IP o 
 \fIstring get_base(string file)\fP
@@ -894,6 +904,15 @@ Output interface:
 .br 
 Shows all (comma separated) arguments to screen (i\&.e\&., the standard
 output stream)\&. Returns the number of printed arguments\&.
+.IP o 
+\fIint printf(string format, \&.\&.\&.)\fP
+.br 
+Shows all (comma separated) arguments to screen (i\&.e\&., the standard
+output stream)\&. Returns the number of printed arguments\&.
+.br 
+if \fIformat\fP contains placeholders %1 \&.\&. %n the output is formatted 
+.br 
+see also \fIstrformat\fP
 
 .PP 
 System interface:
@@ -909,6 +928,7 @@ List information:
 \fIint sizeof(list l)\fP
 .br 
 Returns the number of elements in \fIlist\fP
+Alternative syntax is l.length\fP
 
 .PP 
 System information:
@@ -949,6 +969,27 @@ returns index in \fIhaystack\fP where \fIneedle\fP is found, or \-1 if
 .br 
 \fBThis function was called strstr() in versions before 7\&.00\fP\&.
 .IP o 
+\fIint strformat(string format,\&.\&.\&.)\fP
+.br 
+returns a formatted string using placeholders %1 \&.\&. %2 to address arguments following format\&.
+.br 
+example:
+.br 
+.nf 
+
+			void main()
+			{
+			  int i = 10;
+			  int j = 20;
+			  string s1;
+			  string s2;
+			  s1 = (string)i+\(dq\& \(dq\&+(string)j+\(dq\& \(dq\&+(string)i; // the old way
+			  s2 = strformat(\(dq\&%1 %2 %1\(dq\&,i,j); // the new way
+			  printf(\(dq\&s1=%1 s2=%2\en\(dq\&,s1,s2);
+			}
+		
+.fi 
+.IP o 
 \fIstring strlwr(string s)\fP
 .br 
 Returns a lower\-case duplicate of \fIs\fP\&.
@@ -970,6 +1011,18 @@ Returns a substring of \fItext\fP, starting at \fIoffset\fP, consisting of
 \fIcount\fP characters\&. If \fIoffset\fP exceeds (or equals) the string\(cq\&s
 size or if \fIcount <= 0\fP, then an empty string is returned\&. If
 \fIoffset\fP is less than 0 then 0 is used\&.
+.IP o 
+\fIstring trim(string s)\fP
+.br 
+Returns a string with leading and trailing whitespaces removed\&.
+.IP o 
+\fIstring trimleft(string s)\fP
+.br 
+Returns a string with leading whitespaces removed\&.
+.IP o 
+\fIstring trim(string s)\fP
+.br 
+Returns a string with trailing whitespaces removed\&.
 
 .PP 
 System calls:
