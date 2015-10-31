@@ -253,6 +253,7 @@ typedef enum                                /* names of rss-functions */
 
     f_g_base,
     f_getch,
+    f_getecho,
     f_gets,
     f_g_ext,
     f_g_path,

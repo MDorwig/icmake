@@ -30,6 +30,7 @@ char
 
         "get_base",
         "getch",
+        "getecho",
         "gets",
         "get_ext",
         "get_path",

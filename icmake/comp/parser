@@ -42,6 +42,7 @@
         LIST
         MAKELIST
         M_ECHO
+        M_GETECHO
         NUMBER
         PRINTF
         PUTENV
@@ -534,6 +535,21 @@ expression:
             $$ = $2;
         }
     |
+    	M_ECHO 
+    	openpar 
+    	expression 
+    	closepar
+    	{
+    		$$ = *onearg(f_echo,&$3);
+    	}
+    |
+    	M_GETECHO 
+    	openpar  
+    	closepar
+    	{
+    		$$ = *zeroargs(f_getecho); 
+    	}
+    |
         func_or_var
     |
         '`'
@@ -908,8 +924,6 @@ one_arg_funs:
         SIZEOFLIST
     |
         EXISTS
-    |
-        M_ECHO
     |
         CMD_TAIL
     |

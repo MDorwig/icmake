@@ -27,6 +27,7 @@ void callrss(ESTRUC_ *e, FUNNR_ funnr, ...)
         break;
                                             /* 0 args, returning int */
         case f_getpid:
+        case f_getecho:
             args--;
             type = e_int | e_reg;
         break;

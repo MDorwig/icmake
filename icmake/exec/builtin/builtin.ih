@@ -69,6 +69,7 @@ void fun_fprintf(void);
 void fun_ffprintf(FILE * f,size_t start);
 void fun_g_base(void);
 void fun_getch(void);
+void fun_getecho(void);
 void fun_getpid (void);
 void fun_gets(void);
 void fun_g_ext(void);

@@ -151,6 +151,10 @@ fgets                   {
 for                     {
                             return(FOR);
                         }
+getecho                 {
+                            yylval.type = f_getecho;
+                            return(M_GETECHO);
+                        }
 getenv                  {
                             yylval.type = f_getenv;
                             return GETENV;
@@ -315,7 +319,7 @@ younger                 {
 "<<"                    {
                             return(SHL);
                         }
-0x[0-9]+                {
+0x[0-9a-fA-F]+          {
                             unsigned value;
                             sscanf(yytext + 2, "%x", &value);
                             sprintf(lexstring, "%d", (int)value);

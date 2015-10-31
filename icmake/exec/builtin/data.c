@@ -33,7 +33,9 @@ void (*builtinfun[])(void) =
          fun_fgets,
          fun_fprintf,
     
-         fun_g_base,         fun_getch,
+         fun_g_base,
+         fun_getch,
+         fun_getecho,
          fun_gets,
          fun_g_ext,
          fun_g_path,
