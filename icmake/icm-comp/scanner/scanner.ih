@@ -1,0 +1,61 @@
+#include "scanner.h"
+
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+#include "../../rss/rss.h"
+
+#include "../util/util.h"
+#include "../global.h"
+
+
+#include "../parser/semval.ih"
+#include "../parser/tokens.h"   /* parser.h" */
+
+#ifndef fileno
+    int fileno(FILE *stream);
+#endif
+
+#ifdef unput
+    /* If this stops working, have a look at lexer2.c to see what was   */
+    /* changed in the flex-implementation                               */
+
+    static void yyunput (int c,char *buf_ptr  );
+    void (*unusedUnput)(int c,char *buf_ptr) = &yyunput;
+#endif
+
+enum 
+{
+    N_FILES = 11
+};
+
+typedef struct
+{
+    int former_linenr;
+    char *fname;
+} FileStack;
+
+extern FileStack gs_fileStack[];
+extern size_t gs_fileSp;
+extern char gs_char[];
+extern char *gs_filenames;
+extern char *gs_savedText;
+extern size_t   gs_savedLineNr;
+
+extern size_t   yyleng;
+
+extern FILE *yyin;
+extern FILE *yyout;
+
+void sc_changeFile(char *s);        /* name of source file to open */
+void sc_popFile();
+
+void sc_saveInfo(void);             /* saves yylineno and yytext */    
+void sc_setLineNr(void);            /* updates yylineno at #<nr>\n lines */
+
+char const *sc_escapedChar(int ch);
+char const *sc_scan(char const *fmt, char const *text);
+
+void sc_charConst(void);
+

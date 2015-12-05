@@ -1,0 +1,47 @@
+#include "virtual.h"
+
+#include "../var/var.h"
+
+#include <stdlib.h>
+
+void intcons(Variable *var);
+void stringcons(Variable *var);
+void listcons(Variable *var);
+
+void int_assign(Variable *lhs, Variable const *rhs);
+void string_assign(Variable *lhs, Variable const *rhs);
+void list_assign(Variable *lhs, Variable const *rhs);
+
+void int_add(Variable *lhs, Variable const *rhs);
+void string_add(Variable *lhs, Variable const *rhs);
+void list_add(Variable *lhs, Variable const *rhs);
+
+void int_sub(Variable *lhs, Variable const *rhs);
+void stringSub(Variable *lhs, Variable const *rhs);
+void list_sub(Variable *lhs, Variable const *rhs);
+
+/* intCompare(void) is int_sub() */
+void stringCompare(Variable *lhs, Variable const *rhs);
+void listCompare(Variable *lhs, Variable const *rhs);
+
+void intDestructor(Variable const *var);
+void stringDestructor(Variable const *var);
+void listDestructor(Variable const *var);
+
+int int_bool(Variable const *var);
+int string_bool(Variable const *var);
+int list_bool(Variable const *var);
+
+void intcopycons(Variable *var, Variable const *other);
+void stringcopycons(Variable *var, Variable const *other);
+void listcopycons(Variable *var, Variable const *other);
+
+extern void (*p_assign[])(Variable *lhs, Variable const *rhs);
+extern void (*p_add[])(Variable *lhs, Variable const *rhs);
+extern void (*p_sub[])(Variable *lhs, Variable const *rhs);
+extern void (*p_compare[])(Variable *lhs, Variable const *rhs);
+
+extern void (*p_constructor[])(Variable *var);
+extern void (*p_copycons[])(Variable *lhs, Variable const *other);
+extern void (*p_destructor[])(Variable const *var);
+extern int  (*p_bool[])(Variable const *var);

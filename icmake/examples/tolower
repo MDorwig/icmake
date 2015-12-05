@@ -67,7 +67,7 @@ void main (int argc, list argv)
 	exit (1);
     }
     
-    for (i = 1; i < sizeof (argv); i++)
+    for (i = 1; i < listlen (argv); i++)
     	process (element (i, argv));
     exit (0);
 }

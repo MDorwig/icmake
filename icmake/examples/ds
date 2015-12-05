@@ -135,7 +135,7 @@ int main(int argc, list argv)
 {
     preamble(argv);                         // preamble: determine progname etc.
     argv = options(argc, argv);             // process options
-    argc = sizeof(argv);
+    argc = listlen(argv);
 
     if (argc == 1)                          // no arguments ?
         usage();                            // give help

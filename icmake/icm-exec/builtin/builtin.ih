@@ -1,0 +1,138 @@
+#include "builtin.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <errno.h> 
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+ 
+#include "../var/var.h"
+#include "../stack/stack.h"
+#include "../list/list.h"
+#include "../string/string.h"
+#include "../virtual/virtual.h"
+#include "../int/int.h"
+
+typedef enum
+{
+    TO_STRING = 1,
+    TO_STDOUT = 1,
+    TO_FILE = 2
+} FormatDest;
+
+extern Variable gb_reg;
+
+extern char      gb_orgDir[];
+
+extern char     *gb_argHead;
+extern char     *gb_argTail;
+extern char     *gb_cmdHead;
+extern char     *gb_cmdTail;
+
+extern int      gb_echo;
+
+extern size_t   gb_listIndex;
+
+extern void (*gb_pBuiltinFun[])(void);
+
+extern void (*gb_pDestWrite)(void *dest, char const *begin, char const *end);
+
+/*
+    From push_reg():
+  
+        This function is called when the return register is to be pushed. The
+        return register is used to return information from built-in functions.
+  
+        {\bf Note that} the {\em count} field of the return register is {\bf
+        not} incremented when the register is pushed. The associated memory is
+        assigned by internal functions and may be freed by subsequent {\em
+        pop}-instructions.
+  
+        Therefore, the builtin functions do not have to free the reg's
+        memory when assigning a value to reg.
+*/
+
+char    **eb_addCmd(char **, char *);
+char    **eb_exeCmd(char **, int);
+
+char    *eb_findPercent(char *begin);
+char    *eb_getArg(size_t argIdx, int *listDone);   /* listDone = 1 when all
+                                                       list elements have
+                                                       been retrieved */
+char    *eb_getExecArg(size_t, int *);
+char    *eb_getLine(FILE *file);
+char    *eb_setString(char *);
+char    *eb_strLower(char *str);
+char    *eb_strUpper(char *str);
+
+int     eb_enterCh(void);
+int     eb_getCmdLen(char **);
+int     eb_spawnvp(int mode, char const *prog, char const **argv);
+int     eb_termCh(void);
+
+size_t  eb_formattedFprintf(FILE *dest, FormatDest formatDest);
+size_t  eb_formatter(void *dest, FormatDest formatDest);
+size_t  eb_getNr(char **ptr);
+size_t  eb_noFormatting(void *dest, size_t start, size_t lastIdx);
+
+void    eb_fgetsStatus(char const *status);
+void    eb_fileWrite(void *dest, char const *begin, char const *end);
+void    eb_stringWrite(void *dest, char const *begin, char const *end);
+void    eb_updateFgets(FILE *inf, char *dest);
+void    eb_writeArgument(void *dest, size_t idx);
+
+Variable *eb_releaseReg(void);
+    
+    /* remaining b_ named functions are builtin functions that can be
+        used by icmake scripts 
+    */
+
+void b_resize(void);
+void b_empty(void);
+void b_argHead(void);
+void b_argTail(void);
+void b_asciiInt(void);
+void b_asciiString(void);
+void b_backtick(void);
+void b_stat(void);
+void b_putEnv(void);
+void b_chDir(void);
+void b_getEnv(void);
+void b_cmdHead(void);
+void b_cmdTail(void);
+void b_changeBase(void);
+void b_changeExtension(void);
+void b_changePath(void);
+void b_strtok(void);
+void b_fgets(void);
+void b_fprintf(void);
+void b_getBase(void);
+void b_getCh(void);
+void b_getPid(void);
+void b_gets(void);
+void b_dotExtension(void);
+void b_extension(void);
+void b_path(void);
+void b_echo(void);
+void b_element(void);
+void b_exec(void);
+void b_exists(void);
+void b_makeList(void);
+void b_printf(void);
+void b_listlen(void);
+void b_strElement(void);
+void b_strFind(void);
+void b_strFormat(void);
+void b_strLength(void);
+void b_strLower(void);
+void b_strUpper(void);
+void b_subString(void);
+void b_system(void);
+void b_trim(void);
+void b_trimLeft(void);
+void b_trimRight(void);
+
+

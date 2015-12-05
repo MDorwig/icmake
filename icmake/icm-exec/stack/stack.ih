@@ -1,0 +1,13 @@
+#include "stack.h"
+
+#include "../aux/aux.h"
+#include "../var/var.h"
+#include "../virtual/virtual.h"
+#include "../int/int.h"
+
+void s_testUnderflow(void);
+
+extern Variable *gs_stack;
+extern size_t gs_sp;
+extern size_t gs_bp;
+

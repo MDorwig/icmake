@@ -1,0 +1,40 @@
+_if:
+    IF
+    nesting
+    {
+        symtab_push();
+    }
+;
+
+_else:
+    ELSE
+    statement
+    {
+        $$ = $2;
+    }
+|
+    zeroframe
+;
+
+if_stat:
+    _if
+    openpar
+    condition
+    closepar
+    statement
+    popdead
+    pushdead
+    _else
+    popdead
+    {
+        $$ = *p_if(&$3, &$5, &$8);
+        symtab_pop();
+    }
+;
+
+
+
+
+
+
+

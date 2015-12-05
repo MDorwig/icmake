@@ -1,0 +1,17 @@
+_while:
+    WHILE
+    nesting
+;
+
+while_stat:
+    _while
+    openpar
+    condition
+    closepar
+    break_ok
+    statement
+    popdead
+    {
+        $$ = *p_while(&$3, &$6, 1);
+    }
+;

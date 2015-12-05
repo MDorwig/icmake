@@ -1,0 +1,21 @@
+_voidtype:
+    VOID
+    {
+        gp_varType = 0;
+    }
+;
+
+def_var_or_fun:
+    typed_varlist
+    semicol
+    {
+        gp_init = *p_catCode(&gp_init, &$1);
+    }
+|
+    type_of_var
+    funcdef
+|
+    _voidtype
+    funcdef
+;
+

@@ -1,0 +1,12 @@
+var_expr:
+    enterid
+    zeroframe                           /* no explicit initialization */
+|
+    enter_varid
+    '='
+    expression
+    {
+        $$ = *p_expression(p_assign(&$1, &$3));    /* explicit initialization */
+    }        
+;
+

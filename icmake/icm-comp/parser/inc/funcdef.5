@@ -1,0 +1,54 @@
+    /*
+        parameters are defined as local variables of the current function,
+        while counting the number of parameters. 
+        At the end of a function definition head its symtab nParams fields
+        holds the number of its parameters, which are represented by the
+        initial nParams elements of symtab's local variables array.
+    */
+
+_partype:
+    type_of_var
+    enterid
+;
+
+_pars:
+    _pars
+    comma
+    _partype
+|
+    _partype
+;
+
+_opt_parlist:
+    _pars
+|
+    /* empty */
+;
+
+_funvars:
+    openpar
+    _opt_parlist
+    ')'
+    openbrace
+    {
+        symtab_setFunParams(); /* the # variables so far are the parameters */
+    }
+;
+
+_funid:
+    IDENTIFIER
+    {
+        p_beginFunction();
+    }
+;
+
+
+funcdef:
+    _funid                          /* name of the function */
+    _funvars                         /* returns init code */
+    statements
+    closebrace
+    {
+        p_endFunction(&$3);
+    }
+;

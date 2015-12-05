@@ -1,0 +1,67 @@
+_for:
+    FOR
+    nesting
+    {
+        symtab_push();
+    }
+;
+
+_expr_list:
+    _expr_list
+    ','
+    expr_code
+    {
+        $$ = *p_catCode(&$1, &$3);
+    }
+|
+    expr_code
+;
+
+_opt_init_expression:
+    _expr_list
+|
+    typed_varlist
+|
+    zeroframe
+;
+
+
+_opt_cond_expression:
+    err_expression
+|
+    {
+        $$ = *p_stackFrame(e_int | e_const);
+        $$.evalue = 1;
+    }
+;
+
+_opt_inc_expression:
+    _expr_list
+|
+    zeroframe
+;
+
+for_stat:
+    _for
+    openpar
+    _opt_init_expression    /* $3: init */
+    semicol
+    _opt_cond_expression    /* $5: cond */
+    semicol
+    _opt_inc_expression     /* $7 inc   */
+    closepar
+    break_ok
+    statement               /* $10 stmnt    */
+    popdead
+    {
+        $$ = *p_for(&$3, &$5, &$7, &$10);
+    }
+;
+
+
+
+
+
+
+
+

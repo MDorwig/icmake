@@ -1,0 +1,108 @@
+_p_makeList_expr:
+    MAKELIST
+    openpar
+    err_expression
+    {
+        $$ = $3;
+    }
+;
+
+_p_makeList_normal:
+    {
+        $$ = *p_stackFrame(e_int | e_const);
+        $$.evalue = IS_FILE;
+    }
+;
+
+_old_young:
+    OLDER
+|
+    YOUNGER
+;
+
+_older_younger:
+    {
+        gp_parse_error = err_older_younger; 
+    }
+    _old_young
+    {
+        $$ = $2;
+    }
+;
+
+p_makeList:
+    _p_makeList_expr                  /* p_makeList(expr) */
+    _p_makeList_normal                /* returns IS_FILE expression */
+    {
+        $$ = *p_makeList
+             (
+                 p_multipleArgs
+                 (
+                     p_firstArg(&$2),     /* IS_FILE is passed */
+                     &$1                /* expression is passed */
+                 ),
+                 op_hlt                 /* not op_younger or op_older */
+             );
+    }
+|
+                                        /* p_makeList(expr, expr) */
+    _p_makeList_expr
+    comma
+    err_expression
+    {
+        $$ = *p_makeList
+             (
+                 p_multipleArgs
+                 (
+                     p_firstArg(&$1),     /* fileattribute is passed */
+                     &$3                /* expression is passed */
+                 ),
+                 op_hlt                 /* not op_younger or op_older */
+             );
+    }
+|
+    _p_makeList_expr                       /* p_makeList(expr, older, expr) */
+    comma
+    _older_younger
+    comma
+    err_expression
+    _p_makeList_normal
+    {
+        $$ = *p_makeList
+             (
+                p_multipleArgs
+                (
+                    p_multipleArgs
+                    (
+                        p_firstArg(&$6),  /* IS_FILE   is passed */
+                        &$1             /* 1st expression is passed */
+                    ),
+                    &$5                 /* 2nd expression is passed */
+                 ),
+                 $3.type                /* older/younger */
+             );
+    }
+|
+    _p_makeList_expr                 /* p_makeList(expr, expr, older, expr) */
+    comma
+    err_expression
+    comma
+    _older_younger
+    comma
+    err_expression
+    {
+        $$ = *p_makeList
+             (
+                p_multipleArgs
+                (
+                    p_multipleArgs
+                    (
+                        p_firstArg(&$1),  /* attribute is passed */
+                        &$3             /* 2nd expression is passed */
+                    ),
+                    &$7                 /* 3rd expression is passed */
+                 ),
+                 $5.type                /* older/younger */
+             );
+    }
+;

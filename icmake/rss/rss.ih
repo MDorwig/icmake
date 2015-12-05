@@ -1,0 +1,41 @@
+#include "rss.h"
+
+#include <string.h>
+#include <errno.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <glob.h>
+
+extern glob_t gr_globData;                        /* globbing struct */
+extern size_t gr_nextGlob;                     /* next name in list */
+extern size_t gr_nErrors;
+
+extern char gr_name[];
+extern char gr_dir[];
+extern char gr_fname[];
+extern char gr_ext[];
+
+extern char gr_hexDigits[];
+
+extern  IcmakeFind gr_ifs;                /* icmake find-struct */
+
+size_t  rs_findFirst(char const *, size_t, struct find_t_ *);
+size_t  rs_findNext(struct find_t_ *);
+char   *rs_filename(char *fname);       /* return pointer into frame, just
+                                            beyond dir. name */ 
+int     rs_makeAttribute(char *fname);  /* make DOS attribs */
+int     rs_globerr(char const *path, int errnr); 
+
+void    rs_split(char const *n);   /* calls rss_split */
+void    rs_join(void);             /* calls rss_makePath */
+
+char    *rs_fileFound(void);              /* test attrib/pattern  */
+
+void    rs_msg(char const *src, size_t lineNr,  /* !src: no source info */
+               char const *prefix, char const *fmt, va_list args);
+
+
+

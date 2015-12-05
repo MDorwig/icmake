@@ -237,7 +237,7 @@ int main(int argc, list argv, list envp)
     preamble(argv, envp);                   // set progname and attic dir.
 
     argv = options(argc, argv);             // get the options
-    argc = sizeof(argv);                    // determine remaining arguments
+    argc = listlen(argv);                    // determine remaining arguments
 
     if (argc == 1 && !viewmode)             // none left and no viewmode ?
         usage();                            // give usage and exit 1

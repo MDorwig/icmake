@@ -1,0 +1,42 @@
+#include "scanner.h"
+
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+#include "../../rss/rss.h"
+#include "../filestack/filestack.h"
+#include "../state/state.h"
+
+#include "../parser/tokens.h"   /* parser.h" */
+
+#ifndef fileno
+    int fileno(FILE *stream);
+#endif
+
+#ifdef unput
+    /* If this stops working, have a look at lexer2.c to see what was   */
+    /* changed in the flex-implementation                               */
+
+    static void yyunput (int c,char *buf_ptr  );
+    void (*unusedUnput)(int c,char *buf_ptr) = &yyunput;
+#endif
+
+extern FILE *yyin;
+extern FILE *yyout;
+
+extern char    *yytext;
+extern size_t   yyleng;
+extern int      yylineno;
+
+extern size_t   sc_lastLineNr;
+extern char    *sc_definition;
+extern int      sc_getDefine;
+extern int      sc_eof;
+extern void     (*sc_ptr)(void);
+
+FILE   *sc_pushFile(char const *filename);
+void    sc_startDefinition(void);
+void    sc_appendDefinition(int cutoff);
+
+

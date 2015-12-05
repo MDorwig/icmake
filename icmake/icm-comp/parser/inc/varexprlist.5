@@ -1,0 +1,19 @@
+var_expr_list:
+    var_expr_list
+    comma
+    var_expr
+    {
+        $$ = *p_catCode(&$1, &$3);    /* catenate variable    */
+                                    /* initialization code  */
+    }            
+|
+    var_expr
+|
+    error
+    ok
+    zeroframe                       /* Empty stmnt  */
+    {
+        $$ = $3;
+    }
+;
+

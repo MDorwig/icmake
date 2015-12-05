@@ -1,0 +1,6 @@
+expr_code:
+    err_expression
+    {
+        $$ = *p_expression(&$1);
+    }
+;

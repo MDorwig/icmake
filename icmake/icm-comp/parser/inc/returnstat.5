@@ -1,0 +1,25 @@
+_return_tail:
+    err_expression
+|
+    zeroframe
+;
+
+_leave:
+    RETURN
+    {
+        msg("saw return");
+    }
+|
+    EXIT
+;
+
+return_stat:
+    _leave
+    _return_tail
+    {
+        $$ = *p_return($1.type, &$2);
+        msg("SAW return stmt");
+    }
+;
+
+

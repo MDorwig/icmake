@@ -1,0 +1,10 @@
+openbrace:
+    {
+        gp_parse_error = err_openbrace_expected;
+    }    
+    '{'                             /* } (for matching) */
+    {
+        symtab_push();
+    }
+;
+

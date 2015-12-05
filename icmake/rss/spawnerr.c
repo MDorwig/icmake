@@ -1,48 +1,32 @@
 /*
-\funcref{spawn\_err}{void spawn\_err (\params)}
-    {
-        {char}{*progname}{program name}
-    }
-    {}
-    {error()}
-    {}
-    {spawnerr.c}
-    {
-
         This function can be called when an {\em exec()} or {\em spawn()} call
         indicates failure (by returning -1). Argument {\em progname} should
         indicate the program which should have been executed.
 
         An appropriate error message is printed and the program is halted.
-
-    }
 */
 
-#include "icrssdef.h"
-#include "icm.h"
-#include <errno.h>
+#include "rss.ih"
 
-void spawn_err (progname)
-char *progname;
+void rss_spawnErr(char const *progname)
 {
-    static char
-        errmsg [] = "Can't exec %s: %s";
+    static char errmsg [] = "Can't exec %s: %s";
 
     switch (errno)
     {
         case E2BIG:
-            error (errmsg, progname, "command line too big");
+            rss_fatal(0, 0, errmsg, progname, "command line too big");
         case EACCES:
-            error (errmsg, progname, "access denied");
+            rss_fatal(0, 0, errmsg, progname, "access denied");
         case EMFILE:
-            error (errmsg, progname, "too many open files");
+            rss_fatal(0, 0, errmsg, progname, "too many open files");
         case ENOENT:
-            error (errmsg, progname, "no such file");
+            rss_fatal(0, 0, errmsg, progname, "no such file");
         case ENOEXEC:
-            error (errmsg, progname, "exec file format");
+            rss_fatal(0, 0, errmsg, progname, "exec file format");
         case ENOMEM:
-            error (errmsg, progname, "out of memory");
+            rss_fatal(0, 0, errmsg, progname, "out of memory");
         default:
-            error (errmsg, progname, "unknown error");
+            rss_fatal(0, 0, errmsg, progname, "unknown error");
     }
 }

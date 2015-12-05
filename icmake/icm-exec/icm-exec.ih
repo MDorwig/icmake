@@ -1,0 +1,16 @@
+#include <signal.h>
+#include <stdlib.h>
+
+#include "../rss/rss.h"
+
+#include "aux/aux.h"
+#include "builtin/builtin.h"
+#include "int/int.h"
+#include "list/list.h"
+#include "opcodefun/opcodefun.h"
+#include "stack/stack.h"
+
+extern char **environ;
+
+void    usage(char const *argv0);
+void    cleanup(void);
