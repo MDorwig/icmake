@@ -3,3 +3,6 @@
 	
 ../lexer.c: ../lexer
 	flex -o $@ $<
+
+install:
+	sudo cp icm-comp /usr/lib/icmake
